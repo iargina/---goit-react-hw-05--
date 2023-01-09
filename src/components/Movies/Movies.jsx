@@ -1,6 +1,7 @@
 import css from './Movies.module.css';
 import { gettingFilmsByName } from 'services/filmApi';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Movies = () => {
   const [filmLibrary, setFilms] = useState([]);
@@ -17,8 +18,9 @@ export const Movies = () => {
   const onChange = event => {
     setQuery(event.target.value);
   };
+  const posterPath = 'https://image.tmdb.org/t/p/w500';
+  const filmPath = '/movies/';
 
-  const path = 'https://image.tmdb.org/t/p/w500';
   return (
     <div>
       <form className={css.searchForm} onSubmit={findFilm}>
@@ -38,15 +40,17 @@ export const Movies = () => {
           <ul className={css.list}>
             {filmLibrary.map(film => (
               <li key={film.id} className={css.item}>
-                <img src={path + film.poster_path} alt="" />
-                <h3>{film.original_title}</h3>
-                <p> Rating: {film.vote_average}</p>
+                <Link to={filmPath + film.id}>
+                  <img src={posterPath + film.poster_path} alt="" />
+                  <h3>{film.original_title}</h3>
+                  <p> Rating: {film.vote_average}</p>
+                </Link>
               </li>
             ))}
           </ul>
         </div>
       ) : (
-        <p>nothing here</p>
+        <p>Nothing here</p>
       )}
     </div>
   );

@@ -15,3 +15,16 @@ export const gettingFilmDetails = async movieId => {
   const film = response.data;
   return film;
 };
+
+export const gettingFilmCast = async movieId => {
+  const filmSearch = axios.create({
+    baseURL: baseURL,
+    params: {
+      api_key: API_KEY,
+    },
+  });
+
+  const response = await filmSearch(`/${movieId}/credits`);
+  const cast = response.data.cast;
+  return cast;
+};

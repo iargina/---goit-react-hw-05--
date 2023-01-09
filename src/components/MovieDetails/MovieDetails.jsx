@@ -2,19 +2,40 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { gettingFilmDetails } from 'services/filmDetails';
 import css from './MovieDetails.module.css';
+import { Link } from 'react-router-dom';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    gettingFilmDetails(movieId).then(responce => setMovie(responce));
+    gettingFilmDetails(movieId).then(
+      ({
+        poster_path,
+        original_title,
+        tagline,
+        budget,
+        genres,
+        production_companies,
+        release_date,
+        overview,
+      }) =>
+        setMovie({
+          poster_path,
+          original_title,
+          tagline,
+          budget,
+          genres,
+          production_companies,
+          release_date,
+          overview,
+        })
+    );
   }, [movieId]);
-
   const options = { style: 'currency', currency: 'USD' };
   const numberFormat = new Intl.NumberFormat('ru-RU', options);
   const posterPath = 'https://image.tmdb.org/t/p/w500';
-
+  const filmPath = '/movies/' + movieId;
   return (
     movie && (
       <div className={css.filmWrap}>
@@ -50,6 +71,8 @@ export const MovieDetails = () => {
             <b>Description: </b>
             {movie.overview}
           </p>
+
+          <Link to={filmPath + '/cast'}> Cast</Link>
         </div>
       </div>
     )
