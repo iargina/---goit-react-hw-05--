@@ -1,0 +1,24 @@
+.filmWrap {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 50px;
+  padding: 35px;
+}
+.filmImg {
+  min-width: 30%;
+}
+.filmInfo {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+}
+.title {
+  font-size: 45px;
+}
+.text {
+  font-size: 20px;
+  margin: 0;
+}

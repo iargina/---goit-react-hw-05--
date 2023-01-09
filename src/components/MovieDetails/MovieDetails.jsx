@@ -1,23 +1,57 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { gettingFilmDetails } from 'services/filmDetails';
+import css from './MovieDetails.module.css';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState({});
-  console.log(movieId);
+  const [movie, setMovie] = useState(null);
+
   useEffect(() => {
     gettingFilmDetails(movieId).then(responce => setMovie(responce));
   }, [movieId]);
 
-  console.log(movie);
+  const options = { style: 'currency', currency: 'USD' };
+  const numberFormat = new Intl.NumberFormat('ru-RU', options);
   const posterPath = 'https://image.tmdb.org/t/p/w500';
 
   return (
-    <div>
-      <img src={posterPath + movie.poster_path} alt="" />
-      <h3>{movie.original_title}</h3>
-      <p>{movie.overview}</p>
-    </div>
+    movie && (
+      <div className={css.filmWrap}>
+        <img
+          src={posterPath + movie.poster_path}
+          alt=""
+          className={css.filmImg}
+        />
+        <div className={css.filmInfo}>
+          <h3 className={css.title}>{movie.original_title}</h3>
+          <p className={css.text}>
+            <b>Tagline: </b>"{movie.tagline}"
+          </p>
+          <p className={css.text}>
+            <b>Budget: </b>
+            {numberFormat.format(movie.budget)}
+          </p>
+          <p className={css.text}>
+            <b>Genres: </b>
+            {movie.genres.map(genre => genre.name).join(', ')}
+          </p>
+          <p className={css.text}>
+            <b>Production companies: </b>
+            {movie.production_companies
+              .map(production_companie => production_companie.name)
+              .join(', ')}
+          </p>
+          <p className={css.text}>
+            <b>Release date : </b>
+            {movie.release_date}
+          </p>
+          <p className={css.text}>
+            <b>Description: </b>
+            {movie.overview}
+          </p>
+        </div>
+      </div>
+    )
   );
 };
