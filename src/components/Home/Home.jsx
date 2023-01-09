@@ -1,4 +1,4 @@
-import { gettingFilm } from 'services/filmApi';
+import { gettingPopularFilm } from 'services/filmApi';
 import { useState, useEffect } from 'react';
 import css from './Home.module.css';
 
@@ -6,7 +6,7 @@ export const Home = () => {
   const [filmLibrary, setFilms] = useState([]);
 
   useEffect(() => {
-    gettingFilm().then(result => {
+    gettingPopularFilm().then(result => {
       setFilms([...result]);
       return;
     });
