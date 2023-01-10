@@ -35,8 +35,6 @@ export const MovieDetails = () => {
   const options = { style: 'currency', currency: 'USD' };
   const numberFormat = new Intl.NumberFormat('ru-RU', options);
   const posterPath = 'https://image.tmdb.org/t/p/w500';
-  const filmPath = '/movies/' + movieId + '/cast';
-  console.log(filmPath);
   return (
     movie && (
       <>
@@ -73,8 +71,12 @@ export const MovieDetails = () => {
               <b>Description: </b>
               {movie.overview}
             </p>
-            <Link to="cast"> Cast</Link>
-            <Link to="reviews"> reviews </Link>
+            <Link to="cast" className={css.link}>
+              Cast
+            </Link>
+            <Link to="reviews" className={css.link}>
+              Reviews
+            </Link>
           </div>
         </div>
         <Outlet />
