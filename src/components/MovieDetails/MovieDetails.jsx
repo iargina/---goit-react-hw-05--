@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { gettingFilmDetails } from 'services/filmDetails';
 import css from './MovieDetails.module.css';
 import { Link, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -79,7 +80,9 @@ export const MovieDetails = () => {
             </Link>
           </div>
         </div>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </>
     )
   );

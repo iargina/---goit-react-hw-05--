@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import css from './MovieCast.module.css';
 import image from 'images/photo_not_found.jpg';
 
-export const MovieCast = () => {
+const MovieCast = () => {
   const [actors, setActors] = useState([]);
 
   const { movieId } = useParams();
@@ -40,3 +40,4 @@ export const MovieCast = () => {
     )
   );
 };
+export default MovieCast;

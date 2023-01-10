@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { gettingFilmReviews } from 'services/filmDetails';
 import css from './MovieReviews.module.css';
 
-export const MovieReviews = () => {
+const MovieReviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
 
@@ -36,3 +36,4 @@ export const MovieReviews = () => {
     </div>
   );
 };
+export default MovieReviews;
