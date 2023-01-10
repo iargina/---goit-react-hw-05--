@@ -10,7 +10,7 @@ const MovieReviews = () => {
   useEffect(() => {
     gettingFilmReviews(movieId).then(response => setReviews([...response]));
   }, [movieId]);
-  console.log(reviews);
+
   return (
     <div className={css.wrap}>
       <h3 className={css.title}>Reviews</h3>
