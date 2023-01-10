@@ -1,7 +1,7 @@
 import css from './Movies.module.css';
 import { gettingFilmsByName } from 'services/filmApi';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 export const Movies = () => {
   const [filmLibrary, setFilms] = useState([]);
@@ -35,6 +35,7 @@ export const Movies = () => {
           Find this film
         </button>
       </form>
+      <Outlet />
       {filmLibrary ? (
         <div>
           <ul className={css.list}>

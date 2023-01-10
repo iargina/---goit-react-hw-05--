@@ -2,6 +2,7 @@ import { Home } from './Home/Home';
 import { Movies } from './Movies/Movies';
 import { MovieDetails } from './MovieDetails/MovieDetails';
 import { MovieCast } from './MovieCast/MovieCast';
+import { MovieReviews } from './MovieReviews/MovieReviews';
 import { Routes, Route, Link } from 'react-router-dom';
 
 import css from './App.module.css';
@@ -20,8 +21,10 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId" element={<MovieDetails />} />
-        <Route path="/movies/:movieId/cast" element={<MovieCast />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />}>
+          <Route path="cast" element={<MovieCast />} />
+          <Route path="reviews" element={<MovieReviews />} />
+        </Route>
         <Route path="*" element={<Home />} />
       </Routes>
     </div>

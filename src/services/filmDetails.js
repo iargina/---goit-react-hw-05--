@@ -28,3 +28,16 @@ export const gettingFilmCast = async movieId => {
   const cast = response.data.cast;
   return cast;
 };
+
+export const gettingFilmReviews = async movieId => {
+  const filmSearch = axios.create({
+    baseURL: baseURL,
+    params: {
+      api_key: API_KEY,
+    },
+  });
+
+  const response = await filmSearch(`/${movieId}/reviews`);
+  const reviews = response.data.results;
+  return reviews;
+};
