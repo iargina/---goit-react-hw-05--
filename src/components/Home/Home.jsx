@@ -21,9 +21,9 @@ export const Home = () => {
           <li key={film.id}>
             <Link to={filmPath + film.id}>
               <img src={path + film.poster_path} alt="" />
-              <h3>{film.original_title}</h3>
-              <p> Rating: {film.vote_average}</p>
             </Link>
+            <h3>{film.original_title}</h3>
+            <p> Rating: {film.vote_average}</p>
           </li>
         ))}
       </ul>

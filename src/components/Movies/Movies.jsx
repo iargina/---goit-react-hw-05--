@@ -41,11 +41,11 @@ export const Movies = () => {
           <ul className={css.list}>
             {filmLibrary.map(film => (
               <li key={film.id} className={css.item}>
-                <Link to={filmPath + film.id}>
+                <Link to={filmPath + film.id} className={css.link}>
                   <img src={posterPath + film.poster_path} alt="" />
-                  <h3>{film.original_title}</h3>
-                  <p> Rating: {film.vote_average}</p>
                 </Link>
+                <h3 className={css.text}>{film.original_title}</h3>
+                <p className={css.text}> Rating: {film.vote_average}</p>
               </li>
             ))}
           </ul>
